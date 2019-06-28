@@ -25,8 +25,6 @@ const mapStateToProps = (state) => {
 
 
 
-
-
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -35,6 +33,10 @@ class Login extends Component {
       password: '',
     };
   }
+
+    componentWillMount () {
+       console.log('this.props.location',this.props)
+    }
 
   loginUserSuccess = (token) => {
     this.props.loginUserSuccess(token);
@@ -56,7 +58,6 @@ class Login extends Component {
     })
     .then(res => {
       if (res.status === 200) {
-        this.props.history.push('/form');
         return res.json();
       } else {
         const error = new Error(res.error);
@@ -64,13 +65,13 @@ class Login extends Component {
       }
     })
     .then(data=> {
-     // this.state.token = data.token
         this.props.loginUserSuccess(data.token)
+        this.props.history.push('/listing');
+
     })
     .catch(error => {
       console.error(error);
       this.props.loginUserFailure(error)
-     // alert('Error logging in please try again');
     });
   }
 

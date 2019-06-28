@@ -3,15 +3,18 @@ import { BrowserRouter, Route, Link, Redirect, withRouter, Switch } from 'react-
 import App from './App'
 import FormContainer from './components/FormContainer'
 import login from './components/login'
-import PrivateRoute from './privateRoute'
 import { requireAuthentication } from './components/AuthenticatedComponent'
+import UsersListingComponent from './components/UsersListingComponent'
+import UserDetailsComponent from './components/UserDetailsComponent'
 
 //this.state.authed
 const Routes = () => (
     <App>
         <Switch>
+            <Route exact path="/" component={App} />
             <Route exact path="/login" component={login} />
-            <Route exact path="/form" component={requireAuthentication(FormContainer)}/> 
+            <Route  path="/listing" component={requireAuthentication(UsersListingComponent)}/> 
+            <Route  path="/user" component={requireAuthentication(UserDetailsComponent)}/> 
         </Switch>
     </App> )
 

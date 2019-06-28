@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import { simpleAction }  from './actions/simpleAction';
+import { Link } from 'react-router-dom'
+
 
 /* 
  * mapDispatchToProps
@@ -50,6 +52,10 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <Link className="btn btn-primary" to={{
+                                    pathname: '/login',
+                                    state: { userId: 'gigi' }
+                                    }}> Edit info </Link>
       </div>
     );
   }
